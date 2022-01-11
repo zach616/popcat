@@ -1,12 +1,11 @@
-const http = require('http');
-const port = process.env.PORT || 3000
+require('dotenv').config(); //initialize dotenv
+const Discord = require('discord.js'); //import discord.js
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello World</h1>');
+const client = new Discord.Client(); //create new client
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-server.listen(port,() => {
-  console.log(`Server running at port `+port);
-});
+//make sure this line is the last line
+client.login(process.env.CLIENT_TOKEN); //login bot using token
